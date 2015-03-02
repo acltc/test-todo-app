@@ -30,4 +30,14 @@ class List < ActiveRecord::Base
     end
     return tasks
   end
+
+  def favorite_tasks
+    tasks = []
+    tasks.each do |task|
+      if task.favorite
+        tasks << task
+      end
+    end
+    return tasks
+  end
 end

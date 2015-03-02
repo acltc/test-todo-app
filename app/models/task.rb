@@ -5,6 +5,10 @@ class Task < ActiveRecord::Base
     update(:complete => !complete)
   end
 
+  def toggle_favorite!
+    update(:favorite => !favorite)
+  end
+
   def overdue?
     return Time.now > deadline
   end

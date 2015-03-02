@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20150302212520) do
     t.integer  "list_id",     limit: 4
     t.integer  "priority",    limit: 4
     t.datetime "deadline"
-    t.boolean  "complete",    limit: 1
+    t.boolean  "complete",    limit: 1,     default: false
     t.integer  "duration",    limit: 4
+    t.boolean  "favorite",    limit: 1,     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
