@@ -72,7 +72,7 @@ RSpec.describe Task do
 
   describe 'snooze_hour!' do
     it 'should push deadline off by one hour' do
-      deadline = 1.day.from_now
+      deadline = DateTime.new(2001,2,3)
       task = Task.create(:deadline => deadline)
       task.snooze_hour!
       expect(task.deadline).to eq(deadline + 1.hour)

@@ -22,22 +22,22 @@ class List < ActiveRecord::Base
   end
 
   def incomplete_tasks
-    tasks = []
+    incomplete_tasks = []
     tasks.each do |task|
       if !task.complete
-        tasks << task
+        incomplete_tasks << task
       end
     end
-    return tasks
+    return incomplete_tasks
   end
 
   def favorite_tasks
-    tasks = []
+    favorite_tasks = []
     tasks.each do |task|
       if task.favorite
-        tasks << task
+        favorite_tasks << task
       end
     end
-    return tasks
+    return favorite_tasks
   end
 end
