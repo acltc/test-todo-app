@@ -77,16 +77,26 @@ RSpec.describe List do
 
   end
 
-  describe 'tasks_to_do_next' do
-    it 'should place most overdue tasks at front of the list' do
+  describe 'task_to_do_next' do
+    it 'should return most overdue task if there are any overdue tasks' do
       list = List.create(:name => "Todos")
       task_1 = Task.create(:name => "Take out trash", :deadline => 1.day.from_now, :list_id => list.id)
-      task_2 = Task.create(:name => "Mow the lawn", :priority => 5.years.ago, :list_id => list.id)
-      task_3 = Task.create(:name => "Feed the cat", :priority => 2.days.ago, :list_id => list.id)
+      task_2 = Task.create(:name => "Mow the lawn", :deadline => 5.years.ago, :list_id => list.id)
+      task_3 = Task.create(:name => "Feed the cat", :deadline => 2.days.ago, :list_id => list.id)
 
-      expect(list.tasks_to_do_next.first.name).to eq("Mow the lawn")
-      expect(list.tasks_to_do_next.last.name).to eq("Take out trash")
+      expect(list.task_to_do_next.name).to eq("Mow the lawn")
     end
+
+    it 'should return highest priority task if there are no overdue tasks' do
+      list = List.create(:name => "Todos")
+      task_1 = Task.create(:name => "Take out trash", :deadline => 1.day.from_now, :priority => 1, :list_id => list.id)
+      task_2 = Task.create(:name => "Mow the lawn", :deadline => 5.days.from_now, :priority => 10, :list_id => list.id)
+      task_3 = Task.create(:name => "Feed the cat", :deadline => 2.days.from_now, :priority => 5, :list_id => list.id)
+
+      expect(list.task_to_do_next.name).to eq("Mow the lawn")
+    end
+
+    
 
   end
 

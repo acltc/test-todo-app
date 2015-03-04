@@ -45,7 +45,12 @@ class List < ActiveRecord::Base
     tasks.order(:priority => :desc)
   end
 
-  def tasks_to_do_next
-    tasks.order(:deadline)
+  def task_to_do_next
+    ordered_tasks = tasks.order(:deadline)
+    ordered_tasks.each do |task|
+      return task if task.overdue?
+    end
+    ordered_tasks = tasks.order(:priority => :desc)
+    return ordered_tasks.first    
   end
 end
