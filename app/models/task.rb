@@ -28,4 +28,8 @@ class Task < ActiveRecord::Base
   def snooze_hour!
     update(:deadline => deadline + 1.hour)
   end
+
+  def minutes_remaining
+    return ((deadline - Time.now) / 60).floor
+  end
 end

@@ -40,4 +40,8 @@ class List < ActiveRecord::Base
     end
     return favorite_tasks
   end
+
+  def prioritized_tasks
+    tasks.order(:priority => :desc)
+  end
 end

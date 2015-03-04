@@ -64,4 +64,19 @@ RSpec.describe List do
     end
   end
 
+  describe 'prioritized_tasks' do
+    it 'should return array of all overdue tasks' do
+      list = List.create(:name => "Todos")
+      task_1 = Task.create(:name => "Take out trash", :priority => 5, :list_id => list.id)
+      task_2 = Task.create(:name => "Mow the lawn", :priority => 3, :list_id => list.id)
+      task_3 = Task.create(:name => "Feed the cat", :priority => 10, :list_id => list.id)
+
+      expect(list.prioritized_tasks.first.name).to eq("Feed the cat")
+      expect(list.prioritized_tasks.last.name).to eq("Mow the lawn")
+    end
+
+  end
+
+  
+
 end 

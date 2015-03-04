@@ -79,6 +79,13 @@ RSpec.describe Task do
     end
   end
 
+  describe 'minutes_remaining' do
+    it 'should return number of minutes remaining until deadline' do
+      task = Task.create(:deadline => 5.minutes.from_now)
+      expect(task.minutes_remaining).to eq(4)
+    end
+  end
+
 
   
 
