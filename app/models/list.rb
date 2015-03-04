@@ -44,4 +44,6 @@ class List < ActiveRecord::Base
   def prioritized_tasks
     tasks.order(:priority => :desc)
   end
+
+  
 end

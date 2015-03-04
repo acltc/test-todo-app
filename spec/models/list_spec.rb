@@ -77,6 +77,17 @@ RSpec.describe List do
 
   end
 
-  
+  describe 'tasks_to_do_next' do
+    it 'should place most overdue tasks at front of the list' do
+      list = List.create(:name => "Todos")
+      task_1 = Task.create(:name => "Take out trash", :deadline => 1.day.from_now, :list_id => list.id)
+      task_2 = Task.create(:name => "Mow the lawn", :priority => 5.years.ago, :list_id => list.id)
+      task_3 = Task.create(:name => "Feed the cat", :priority => 2.days.ago, :list_id => list.id)
+
+      expect(list.tasks_to_do_next.first.name).to eq("Mow the lawn")
+      expect(list.tasks_to_do_next.last.name).to eq("Take out trash")
+    end
+
+  end
 
 end 
