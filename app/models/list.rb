@@ -45,5 +45,7 @@ class List < ActiveRecord::Base
     tasks.order(:priority => :desc)
   end
 
-  
+  def tasks_to_do_next
+    tasks.order(:deadline)
+  end
 end
